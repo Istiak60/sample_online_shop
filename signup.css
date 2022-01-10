@@ -1,0 +1,64 @@
+h1 {
+    text-align: center;
+    color: rgb(126, 16, 85);
+  }
+  .labels {
+    text-align: center;
+    padding: 30px;
+    color: white;
+    border-radius: 25px;
+  }
+  .labels input{
+    padding: 10px 30px;
+  }
+  .form-elements {
+    padding: 5px;
+  }
+  .cpassword {
+    padding-right: 88px;
+  }
+  .name {
+    padding-right: 170px;
+  }
+  .contact {
+    padding-right: 165px;
+  }
+  .address {
+    padding-right: 155px;
+  }
+  .ut {
+    padding-right: 140px;
+  }
+  .usertype {
+    padding-right: 160px;
+  }  
+  .admintype {
+    padding-right: 147px;
+  }
+
+
+
+  .email {
+    padding-right: 170px;
+  }
+  .password {
+    padding-right: 147px;
+  }
+  
+  .fields{
+    text-align: center;
+    padding: 5px 5px;
+  }
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(190, 17, 17, 0.2);
+    transition: 0.3s;
+    width:30% ;
+    margin-top: 100px;
+    padding-top: 15px;
+    padding-bottom: 30px;
+    background: rgb(219, 212, 214)
+  }
+  
+  @media (max-width: 700){
+   
+  }

@@ -1,0 +1,138 @@
+body {
+	background-color: rgb(238, 231, 231);
+}
+
+h1 {
+
+	text-align: center;
+	color: rgb(255, 255, 255);
+
+
+}
+
+.main_section {
+	min-height: 100vh;
+	width: 100%;
+	background-image: linear-gradient(rgba(11, 26, 85, 0.7), rgba(9, 21, 66, 0.7)),
+		url(img/banner.jfif);
+	background-position: center;
+	background-size: cover;
+	position: relative;
+}
+
+input[type=text],
+input[type=password] {
+	width: 85%;
+	margin: 5px 0px 5px 5px;
+	display: inline-block;
+	border: solid;
+	background-color: #f1f1f1;
+	height: 25px;
+
+}
+
+/* Style the label to display next to the inputs */
+label {
+	padding: 12px 12px 12px 0;
+	display: inline-block;
+	font-size: 25px;
+}
+
+.input[type=submit] {
+	font-size: 40px;
+}
+
+.container {
+	box-shadow: 0 4px 8px 0 rgb(133, 122, 122);
+	transition: 0.3s;
+	width: 10%;
+	margin-top: 100px;
+	padding-top: 15px;
+	padding-bottom: 30px;
+
+}
+
+.book_icon {
+	display: flex;
+	margin-top: 50px;
+}
+
+.book_icon .fas {
+	color: red;
+	font-size: 50px;
+	margin-right: 10px;
+}
+
+.book_icon h2 {
+	color: #fff;
+}
+
+.book_content {
+	color: #fff;
+	text-align: center;
+	margin-top: 10%;
+}
+
+.book_content h2 {
+	text-transform: uppercase;
+	font-size: 50px;
+	color: white;
+}
+
+.book_content p {
+	font-size: 20px;
+	line-height: 1.5em;
+	color: cornsilk;
+}
+
+.book_btn {
+	display: flex;
+	justify-content: center;
+	margin-top: 50px;
+}
+
+.book_btn a {
+	display: inline-block;
+	background-color: #fff;
+	color: #000;
+	padding: 15px 80px;
+	border-radius: 5px;
+	margin-right: 20px;
+	text-decoration: none;
+}
+
+.btn_left a:hover {
+	background-color: pink;
+}
+
+.btn_right a:hover {
+	background-color: pink;
+}
+
+/* Medium Layout: 1280px. */
+@media only screen and (min-width: 992px) and (max-width: 1200px) {}
+
+/* Tablet Layout: 768px. */
+@media only screen and (min-width: 768px) and (max-width: 991px) {}
+
+/* Mobile Layout: 320px. */
+@media only screen and (max-width: 767px) {
+	.book_icon {
+		justify-content: center;
+	}
+
+	.book_content h2 {
+		font-size: 40px;
+	}
+
+	.book_content p {
+		font-size: 18px;
+	}
+
+	.book_btn a {
+		padding: 15px 30px;
+	}
+}
+
+/* Wide Mobile Layout: 480px. */
+@media only screen and (max-width: 480px) {}

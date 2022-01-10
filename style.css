@@ -1,0 +1,235 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+/* header */
+.header {
+  min-height: 100vh;
+  width: 100%;
+  background-image: linear-gradient(rgba(11, 26, 85, 0.7), rgba(9, 21, 66, 0.7)),
+    url(img/banner.jfif);
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+
+.book_icon h2 {
+  color: #f44336;
+}
+
+.book_icon .fas {
+  color: #f44336;
+  height: 15px;
+  width: 50px;
+}
+
+
+nav {
+  display: flex;
+  padding: 2% 6%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav img {
+  width: 150px;
+}
+
+.nav-links {
+  flex: 1;
+  text-align: right;
+}
+
+.nav-links ul li {
+  list-style: none;
+  display: inline-block;
+  padding: 8px 12px;
+  position: relative;
+}
+
+
+
+.nav-links ul li a {
+  color: rgb(248, 248, 248);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+
+
+.nav-links ul li::after {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background: #f44336;
+  display: block;
+  margin: auto;
+  transition: 0.5s;
+}
+
+.nav-links ul li:hover::after {
+  width: 100%;
+}
+
+.nav-links dropdown-menu-dark {
+  color: #dee2e6;
+  background-color: #0c75df;
+  border-color: rgba(231, 14, 14, 0.986);
+}
+
+.text-box {
+  width: 90%;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.text-box h1 {
+  font-size: 62px;
+}
+
+.text-box p {
+  margin: 10px 0 40px;
+  font-size: 14px;
+  color: rgb(52, 248, 199);
+  font-size: 40px;
+}
+
+.text-box p1 {
+  margin: 10px 0 40px;
+  font-size: 14px;
+  color: #fff;
+  font-size: 30px;
+}
+
+.hero-btn {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 12px 34px;
+  font-size: 13px;
+  background: transparent;
+  position: relative;
+  cursor: pointer;
+}
+
+.hero-btn:hover {
+  border: 1px solid #f44336;
+  background: #f44336;
+  transition: 1s;
+}
+
+nav .fa {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .text-box h1 {
+    font-size: 20px;
+  }
+
+  .nav-links ul li {
+    display: block;
+  }
+
+  .nav-links {
+    position: fixed;
+    background: #f44336;
+    height: 100vh;
+    width: 200px;
+    top: 0;
+    right: -200px;
+    text-align: left;
+    z-index: 2;
+    transition: 1s;
+  }
+
+  nav .fa {
+    display: block;
+    color: #fff;
+    margin: 10px;
+    font-size: 22px;
+    cursor: pointer;
+  }
+
+  .nav-links ul {
+    padding: 30px;
+  }
+}
+
+
+.row1 {
+  margin-top: 5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.row2 {
+  margin-top: 2px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.books {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.book-col {
+  flex-basis: 15%;
+  justify-content: space-between;
+  border-radius: 10px;
+  margin-bottom: 5%;
+  text-align: left;
+}
+
+.book-col img {
+  width: 100%;
+  height: 50%;
+  border-radius: 10px;
+}
+
+.book-col h3 {
+  margin-top: 16px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+/* Footer */
+.footer {
+  width: 100%;
+  text-align: center;
+  padding: 30px 0;
+}
+
+.footer h4 {
+  margin-bottom: 25px;
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+.icons .fa {
+  color: #f44336;
+  margin: 0 13px;
+  cursor: pointer;
+  padding: 18px 0;
+}
+
+.fa-heart-o {
+  color: #f44336;
+}
+
+nav mdi-cloud-upload {
+
+  color: rgb(255, 0, 0);
+}

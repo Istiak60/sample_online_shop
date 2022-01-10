@@ -1,0 +1,43 @@
+body {
+  background-color: rgb(238, 231, 231);
+}
+
+h1 {
+
+  text-align: center;
+  color: rgb(255, 255, 255);
+
+
+}
+
+input[type=text],
+input[type=password] {
+  width: 85%;
+  margin: 5px 0px 5px 5px;
+  display: inline-block;
+  border: solid;
+  background-color: #f1f1f1;
+  height: 25px;
+
+}
+
+/* Style the label to display next to the inputs */
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+  font-size: 25px;
+}
+
+.input[type=submit] {
+  font-size: 40px;
+}
+
+.container {
+  box-shadow: 0 4px 8px 0 rgb(133, 122, 122);
+  transition: 0.3s;
+  width: 10%;
+  margin-top: 100px;
+  padding-top: 15px;
+  padding-bottom: 30px;
+
+}
