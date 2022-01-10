@@ -235,6 +235,10 @@ session_start();
         // $rows = count($result); 
         if($rows > 0) {
           var_dump($rows);
+          echo'<h3>'.$rows['book_name'].'</h3>';
+          echo'<h3>'.$rows['author_name'].'</h3>';
+          echo'<h3>'.$rows['price'].'</h3>';
+          
         }
         ?>
   <!-- Footer -->

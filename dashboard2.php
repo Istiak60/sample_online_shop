@@ -246,18 +246,18 @@ img{height:100%;
   
   <!-- if condition to check user type--> 
  
-    <?php if($user_data['user_type'] =="Admin"){ ?> 
+  <?php 
+    if($_SESSION['user_type'] == "Admin" ){ ?> 
      <a href="bookupload.php" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="instagram" data-abc="true" style="witdh:50px"><i class="mdi mdi-cloud-upload" aria-hidden="true"style ="color:rgb(6, 209, 245);font-size:30px"></i></a></li>
      <li ><a href="orders.php"><i class="fas fa-dolly" style="font-size: 30px; color:rgb(6, 209, 245)"></i></a></li>	
-
-     <?php} ?>
-    <?php }else{
-} ?>
-<?php if($user_data['user_type'] =="User"){ ?> 
+    
+     
+    <?php }else{?>
      <a href="cart.php" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="instagram" data-abc="true" style="witdh:50px"><i class="mdi mdi-cart" aria-hidden="true"style ="color:rgb(6, 209, 245);font-size:30px"></i></a></li>
-    <?php} ?>
-    <?php }else{
-} ?>
+
+     <?php   }
+     ?>
+
 
   
             </ul> 
@@ -327,24 +327,22 @@ img{height:100%;
               <td><input type="text" id="country" name="quantity" style="border-style: none;background:none;" value=<?php echo $row['quantity'];?> readonly><br><br></td>
               <td > <?php echo '<input  type="number" name="rquantity"max="'.$row['quantity'].'"min="1" style="width: 70px; height: 20px;background:none;">';?></td > 
               <td ><?php echo'<input type="submit" name="add_to_cart" value="Add to cart" class="btn btn-success">';?></td >
-              <?php} ?>
-    <?php }else{
-} ?>
+              <?php } ?>
+    <?php }  ?>
 
           <?php if($row['quantity']<=0&&$user_data['user_type'] =="User"){ ?> 
                 <td style="color:red;font-weight:bold; font-size:20px;" align = "center"; > <?php echo 'Out of Stock';?></td > 
                 <td > <?php echo '<input type="number" name="rquantity" style="width: 70px; height: 20px;background:none;" disabled>';?></td > 
               <td ><?php echo'<input type="submit" name="add_to_cart" value="Unavailable " class="btn btn-danger" disabled>';?></td >   
-    <?php} ?>
+    <?php } ?>
     <?php }else{
 } ?>
 </form>
 <?php if($row['quantity']>0&&$user_data['user_type'] =="Admin"){ ?> 
               <td><input type="text" id="country" name="quantity" style="border-style: none;background:none;" value=<?php echo $row['quantity'];?> readonly><br><br></td>
  
-              <?php} ?>
-    <?php }else{
-} ?>
+              <?php } ?>
+ 
 
           <?php if($row['quantity']<=0&&$user_data['user_type'] =="Admin"){ ?> 
             <form method="POST" action="bookupload.php">
@@ -353,9 +351,8 @@ img{height:100%;
                 
      </form>
 
-    <?php} ?>
-    <?php }else{
-} ?>
+    <?php } ?>
+    
 
    
 
@@ -367,11 +364,9 @@ img{height:100%;
 
 
          <?php
-             } 
-          
-          
+             
  
-         }
+         
        
          echo "</table>";
    ?>
