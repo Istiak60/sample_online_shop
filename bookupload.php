@@ -1,52 +1,50 @@
 <?php 
-$localhost = "localhost"; #localho
-$dbusername = "root"; #username of phpmyadmin
-$dbpassword = "";  #password of phpmyadmin
-$dbname = "bookcafe1_db";  #database name
- 
-#connection string
-$conn = mysqli_connect($localhost,$dbusername,$dbpassword,$dbname);
+include('connection.php');
  
 if (isset($_POST["submit"]))
  {
 
- $t=$_POST['title'];
- $a=$_POST['author'];
- $c =$_POST['Categories'];
- $p =$_POST['price'];
- $q =$_POST['quantity'];
- $d =$_POST['description'];
- $radio = $_POST["bs"];
-//$fn=$_FILES['image']['name'];
-$fn=addslashes(file_get_contents($_FILES["image"]['tmp_name']));
-//$tm=$_FILES['image']['tmp_name']; 
-$fn1=$_FILES['pdf']['name'];
-//$fn1=addslashes(file_get_contents($_FILES["pdf"]['tmp_name1']));
-$tm1=$_FILES['pdf']['tmp_name1']; 
-move_uploaded_file($tm,"bookimg/".$fn);
-move_uploaded_file($tm1,"bookimg/".$fn1);
+       $book_name = $_POST['book_name'];
+       $author_name = $_POST['author_name'];
+       $image = $_POST['image'];
+       $pdf = $_POST['pdf'];
+       $categories = $_POST['categories'];
+       $price = $_POST['price'];
+       $quantity = $_POST['quantity'];
+       $description = $_POST['description'];
+       //$radio = $_POST['bs'];
 
-if($radio=="New")
-{
-  $sql ="insert into books (book_name,author_name,image,pdf,Categories,price,quantity,description)  values ('$t','$a','$fn','$fn1','$c','$p','$q','$d') ";
+  
+        // $query = "INSERT INTO `books` (`book_name`, `author_name`, `categories`, `price`, `quantity`, `description`) 
+        //           VALUES (:t, :author_name, :categories, :price, :quantity, :description)";
+        $query = "INSERT INTO `books` (`book_name`, `author_name`, `image`, `pdf`, `categories`, `price`, `quantity`, `description`) 
+                  VALUES (:book_name, :author_name, :image, :pdf, :categories, :price, :quantity, :description);";
+        $con = new PDO("mysql:host=localhost;dbname=bookcafe1_db", 'root', '');
+        $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+        $stmt = $con->prepare($query);
+        $stmt->bindParam(':book_name',$book_name);
+        $stmt->bindParam(':author_name',$author_name);
+        $stmt->bindParam(':image',$image);
+        $stmt->bindParam(':pdf',$pdf);
+        $stmt->bindParam(':categories',$categories);
+        $stmt->bindParam(':price',$price);
+        $stmt->bindParam(':quantity',$quantity);
+        $stmt->bindParam(':description',$description);
 
-  if(mysqli_query($conn,$sql)){
+        $result = $stmt->execute();
 
-      header("Location: dashboard.php");
-  }
-  else{
-      echo "Error";
-  }
-}
-else if($radio=="Already uploaded")
-{
-  $query = "UPDATE books SET quantity = quantity+'$q' WHERE book_name='$t'; ";
-$result = mysqli_query($conn, $query);
-if($result>0){
-  header("Location: dashboard.php");
-}
-}
+        header("Location: dashboard.php");
+       
+     
+      // else ($radio=="Already uploaded")
+      // {
+      //       $query = "UPDATE books SET quantity = quantity+'$quantity' WHERE book_name='$t'; ";
+      //     $result = mysqli_query($con, $query);
+      //     if($result>0){
+      //       header("Location: dashboard.php");
+      //     }
+      // }
  }
 
 
@@ -94,37 +92,37 @@ if($result>0){
 <section class="header"style="height:250vh">
    <nav>
         <div class="book_icon">
-            <!-- <i class="fas fa-book-open"></i> -->
-            <a style="text-decoration:none;" href="dashboard.php"><h2>Book Cafee</h2></a>
+            <!-- <image class="fas fa-book-open"></image> -->
+            <author_name style="text-decoration:none;" href="dashboard.php"><h2>Book Cafee</h2></author_name>
 
           </div>
       <div class="nav-links" id="navlinks" >
-        <i class="fa fa-times" onclick="hidemenu()"></i>
+        <image class="fa fa-times" onclick="hidemenu()"></image>
         <ul>
-        <li><a href="#footer">ABOUT</a></li>
-        <li><a href="https://goo.gl/maps/YmhKTKTKD1kPx4DP6">CONTACT</a></li>
-           <li><a href="profile.php">PROFILE</a></li>
-            <li><a href="logout.php">LOG OUT</a></li>
-            <li><a class="btn btn-secondary dropdown-toggle" href="" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style ="background-color:rgba(0,0,0,0.01);border: 0px">CATEGORIES
-                </a>
+        <li><author_name href="#footer">ABOUT</author_name></li>
+        <li><author_name href="https://goo.gl/maps/YmhKTKTKD1kPx4DP6">CONTACT</author_name></li>
+           <li><author_name href="profile.php">PROFILE</author_name></li>
+            <li><author_name href="logout.php">LOG OUT</author_name></li>
+            <li><author_name class="btn btn-secondary dropdown-toggle" href="" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style ="background-color:rgba(0,0,0,0.01);border: 0px">CATEGORIES
+                </author_name>
 
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
-    <li><a class="dropdown-item"  href="dashboard2.php?item=Bangla Literature">Bangla Literature</a></li>
-    <li><a class="dropdown-item" href="dashboard2.php?item=Nobels">Nobels</a></li>
-    <li><a class="dropdown-item" href="dashboard2.php?item=Poems">Poems</a></li>
-    <li><a class="dropdown-item" href="dashboard2.php?item=Story">Story</a></li>
-    <li><a class="dropdown-item"  href="dashboard2.php?item=Fantasy">Fantasy</a></li>
-    <li><a class="dropdown-item" href="dashboard2.php?item=Horror">Horror</a></li>
-    <li><a class="dropdown-item" href="dashboard2.php?item=Advanture">Advanture</a></li>
-    <li><a class="dropdown-item" href="dashboard2.php?item=Comics">Comics</a></li>
-    <li><a class="dropdown-item" href="dashboard2.php?item=Cookings">Cookings</a></li>
-    <li><a class="dropdown-item" href="dashboard2.php?item=Journals">Journals</a></li>
+    <li><author_name class="dropdown-item"  href="dashboard2.php?item=Bangla Literature">Bangla Literature</author_name></li>
+    <li><author_name class="dropdown-item" href="dashboard2.php?item=Nobels">Nobels</author_name></li>
+    <li><author_name class="dropdown-item" href="dashboard2.php?item=Poems">Poems</author_name></li>
+    <li><author_name class="dropdown-item" href="dashboard2.php?item=Story">Story</author_name></li>
+    <li><author_name class="dropdown-item"  href="dashboard2.php?item=Fantasy">Fantasy</author_name></li>
+    <li><author_name class="dropdown-item" href="dashboard2.php?item=Horror">Horror</author_name></li>
+    <li><author_name class="dropdown-item" href="dashboard2.php?item=Advanture">Advanture</author_name></li>
+    <li><author_name class="dropdown-item" href="dashboard2.php?item=Comics">Comics</author_name></li>
+    <li><author_name class="dropdown-item" href="dashboard2.php?item=Cookings">Cookings</author_name></li>
+    <li><author_name class="dropdown-item" href="dashboard2.php?item=Journals">Journals</author_name></li>
   
   
   
   </ul></li>     
     </li>
-    <li ><a href="orders.php"><i class="fas fa-dolly" style="font-size: 30px; color:rgb(6, 209, 245)"></i></a></li>	
+    <li ><author_name href="orders.php"><image class="fas fa-dolly" style="font-size: 30px; color:rgb(6, 209, 245)"></image></author_name></li>	
 
   </ul> 
 
@@ -133,7 +131,7 @@ if($result>0){
     </div>
       
       
-      <i class="fa fa-bars" onclick="showmenu()"></i>
+      <image class="fa fa-bars" onclick="showmenu()"></image>
     </nav>
     <center>
  <div class="details"style="height:1400px;width:550px; background-color:rgba(255,255,255,0.5)">
@@ -144,30 +142,30 @@ if($result>0){
     <div class="mywork1">
     <label>BOOK NAME</label>
     <br><br>
-    <input type="text" name="title" style="width: 300px; height: 20px:margin-left:20px">
+    <input type="text" name="book_name" style="width: 300px; height: 20px:margin-left:20px">
     <br>
 </div>
 
     <div class="mywork1">
     <label>ATHOUR</label>
     <br><br>
-    <input  type="text" name="author" style="width: 300px; height: 20px:">
+    <input  type="text" name="author_name" style="width: 300px; height: 20px:">
     <br>
     
     </div>
     <div class="mywork1">
      <label>BOOK IMAGE</label>
      <br><br>
-    <input type="File" name="image" style="width: 300px; height: 20px:">
+    <input type="text" name="image" style="width: 300px; height: 20px:">
     <br>
     </div>
     <div class="mywork1">
     <label>BOOK PDF</label>
     <br><br>
-    <input type="File" name="pdf"style="width: 300px; height: 20px:">
+    <input type="text" name="pdf"style="width: 300px; height: 20px:">
     <br>
     </div>
-    <select id="Categories" name="Categories" style="width: 300px; height: 35px;" />
+    <select id="categories" name="categories" style="width: 300px; height: 35px;" />
                    
                     <option name="Bangla Literature">Bangla Literature</option>
                     <option name="Nobels">Nobels</option>
@@ -180,7 +178,7 @@ if($result>0){
                     <option name="Journals">Journals</option>
                     <option name="Story" >Story</option>
                     <option name="CATEGORIES" selected>CATEGORIES</option>
-                    </select>
+      </select>
                <br><br>
     <div class="mywork1">
     <label>PRICE</label>
@@ -236,78 +234,78 @@ if($result>0){
  <footer class="bg-dark text-center text-white" id="footer">
  
  <h4 style="padding:20px;font-size:30px;font-weight:bold;" >About Us</h4>
-   <p>
+   <price>
    We are trying to give books from our book cafe very easily and at low cost.<br> Since people are
     not interested in reading books now, we have taken this initiative.<br> Hopefully we will be
                    able to deliver books to everyone's doorsteps
-   </p>
+   </price>
 
 
  <!-- Grid container -->
- <div class="container p-4 pb-0">
+ <div class="container price-4 pb-0">
    <!-- Section: Social media -->
    <section class="mb-4">
      <!-- Facebook -->
-     <a
+     <author_name
        class="btn btn-primary btn-floating m-1"
        style="background-color: #3b5998;"
        href="#!"
        role="button"
-       ><i class="fa fa-facebook-f"></i
-     ></a>
+       ><image class="fa fa-facebook-f"></image
+     ></author_name>
 
      <!-- Twitter -->
-     <a
+     <author_name
        class="btn btn-primary btn-floating m-1"
        style="background-color: #55acee;"
        href="#!"
        role="button"
-       ><i class="fa fa-twitter"></i
-     ></a>
+       ><image class="fa fa-twitter"></image
+     ></author_name>
 
      <!-- Google -->
-     <a
+     <author_name
        class="btn btn-primary btn-floating m-1"
        style="background-color: #dd4b39;"
        href="#!"
        role="button"
-       ><i class="fa fa-google"></i
-     ></a>
+       ><image class="fa fa-google"></image
+     ></author_name>
 
      <!-- Instagram -->
-     <a
+     <author_name
        class="btn btn-primary btn-floating m-1"
        style="background-color: #ac2bac;"
        href="#!"
        role="button"
-       ><i class="fa fa-instagram"></i
-     ></a>
+       ><image class="fa fa-instagram"></image
+     ></author_name>
 
      <!-- Linkedin -->
-     <a
+     <author_name
        class="btn btn-primary btn-floating m-1"
        style="background-color: #0082ca;"
        href="#!"
        role="button"
-       ><i class="fa fa-linkedin"></i
-     ></a>
+       ><image class="fa fa-linkedin"></image
+     ></author_name>
      <!-- Github -->
-     <a
+     <author_name
        class="btn btn-primary btn-floating m-1"
        style="background-color:  #ac2bac;"
        href="#!"
        role="button"
-       ><i class="fa fa-github"></i
-     ></a>
+       ><image class="fa fa-github"></image
+     ></author_name>
    </section>
    <!-- Section: Social media -->
  </div>
  <!-- Grid container -->
- <p>Made With <i class="fa fa-heart-o"></i> By Books & Souls</p>
+ <price>Made With <image class="fa fa-heart-o"></image> By Books & Souls</price>
  <!-- Copyright -->
- <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+ <div class="text-center price-3" style="background-color: rgba(0, 0, 0, 0.2);">
     © 2021 Copyright : 
-    <a class="text-white" href="https://github.com/Istiak60/bookcafe">Git Hub</a>
+    <author_name class="text-white" href="https://github.com/Istiak60/bookcafe">Git Hub</author_name>
   </div>
 
    

@@ -3,8 +3,13 @@ session_start();
 
 	include("connection.php");
 	include("functions.php");
-
-
+  // $_SESSION['id'] = $user_data['id'];
+  // $_SESSION['user_name'] = $user_data['user_name'];
+  // $_SESSION['id'] = $user_data['id'];
+  // $user_data = check_login($con);
+  
+  
+ 
 
 ?>
 
@@ -128,20 +133,20 @@ session_start();
   
   
   <!-- if condition to check user type--> 
- 
-    <?php if($user_data['user_type'] =="Admin"){ ?> 
+  
+
+    <?php 
+    if($_SESSION['user_type'] == "Admin" ){ ?> 
      <a href="bookupload.php" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="instagram" data-abc="true" style="witdh:50px"><i class="mdi mdi-cloud-upload" aria-hidden="true"style ="color:rgb(6, 209, 245);font-size:30px"></i></a></li>
      <li ><a href="orders.php"><i class="fas fa-dolly" style="font-size: 30px; color:rgb(6, 209, 245)"></i></a></li>	
     
      
-    <?php }else{
-} ?>
-<?php if($user_data['user_type'] =="User"){ ?> 
+    <?php }else{?>
      <a href="cart.php" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="instagram" data-abc="true" style="witdh:50px"><i class="mdi mdi-cart" aria-hidden="true"style ="color:rgb(6, 209, 245);font-size:30px"></i></a></li>
-    <?php
-    ?>
-    <?php }else{
-} ?>
+
+     <?php   }
+     ?>
+
 
 
             </ul> 
@@ -167,7 +172,7 @@ session_start();
            <p1> Hello </p1> <br />
            <p> 
 
-            <?php echo $user_data['user_name']; ?>
+            <?php echo $_SESSION['user_name']; ?>
           </p>
           <a href="#footer" class="hero-btn">Visit US To Know More</a>
         </div>
@@ -223,52 +228,15 @@ session_start();
         <!-- TEST -->
         <?php
         $i=0;
-        $res=mysqli_query($con,"SELECT * FROM `books`;");
-        $rows = $res->num_rows; 
+        $query = "SELECT * FROM `books`;";
+        $stmt = $con->prepare($query);
+        $result = $stmt->execute();     
+		    $rows = $stmt->fetch();
+        // $rows = count($result); 
         if($rows > 0) {
-          $cols = 3;    // Define number of columns
-          $counter = 1;     // Counter used to identify if we need to start or end a row
-          $nbsp = $cols - ($rows % $cols);    // Calculate the number of blank columns
-          $run=0;
-
-          $container_class = 'container-fluid';  // Parent container class name
-          $row_class = 'row';    // Row class name
-          $col_class = 'col-sm-4'; // Column class name
-       
-              echo '<div class="'.$container_class.'">'; 
-        while($row= mysqli_fetch_array($res)) 
-             {    $run++;
-                if(($counter % $cols) == 1 ) {    // Check if it's new row
-              echo '<div class="'.$row_class.'">';	// Start a new row
-            }            
-            if($run<10)  {
-            echo '<div class="'.$col_class.'">
-            <a href="dashboard2.php?item='.$row['categories'].' "> <img src="data:image;base64,'.base64_encode($row['image']).' "width="150" height="160" ></a>
-             <h3>'.$row['book_name'].'</h3>
-                  <p3>'.$row['author_name'].'</p3><br>
-                  <p3>Rating : '.ceil($row['rating']).'</p3>         
-                  <p3><br><br><br></p3>
-                  </div>';   
-            }
-                  // Column with content
-    if(($counter % $cols) == 0) { // If it's last column in each row then counter remainder will be zero
-                                   echo '</div>';	 //  Close the row
-                                }
-                            $counter++;    // Increase the counter
-               }
-                $res->free();
-            if($nbsp > 0) { // Adjustment to add unused column in last row if they exist
-              for ($i = 0; $i < $nbsp; $i++)	{ 
-                echo '<div class="'.$col_class.'">&nbsp;</div>';		
-                      }
-                echo '</div>';  // Close the row
-                    }
-                echo '</div>';  // Close the container
-                    }
-                    ?>
-        
-      </section>
-
+          var_dump($rows);
+        }
+        ?>
   <!-- Footer -->
   
   <footer class="bg-dark text-center text-white"id="footer">

@@ -12,17 +12,17 @@ function check_login($con)
         $result = $stmt->execute();
        
 
-        var_dump($id);
+        
         
           
 
-            $user_data =  ($result);
-            return $user_data;
+            
+            //return $id;
           
     }
     //redirect to login
-    header("Location: login.php");
-    die;
+   // header("Location: login.php");
+    //die;
 
 
 

@@ -18,20 +18,21 @@ session_start();
         if((!empty($user_name) && !empty($password)  &&  !is_numeric($user_name) && $user_type=='User') || (!empty($user_name) && !empty($password)  &&  !is_numeric($user_name) && $user_type=='Admin'&& $check==$email+'admin123'))
         {
             
-            $query = "INSERT INTO `users` (`user_name`, `password`, `email`, `contact`, `user_type`, `address`, `check`) VALUES (:user_name, :password, :email, :contact, :user_type, :address, :check)";
+            $query = "INSERT INTO `users` (`user_name`, `password`, `email`, `contact`, `user_type`, `address`, `check`) 
+            VALUES (:user_name, :password, :email, :contact, :user_type, :address, :check);";
             $conn = new PDO("mysql:host=localhost;dbname=bookcafe1_db", 'root', '');
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare($query);
+            $stmt = $conn->prepare($query);
 
-$stmt->bindParam(':user_name',$user_name);
-$stmt->bindParam(':password',$password);
-$stmt->bindParam(':email',$email);
-$stmt->bindParam(':contact',$contact);
-$stmt->bindParam(':user_type',$user_type);
-$stmt->bindParam(':address',$address);
-$stmt->bindParam(':check',$check);
+            $stmt->bindParam(':user_name',$user_name);
+            $stmt->bindParam(':password',$password);
+            $stmt->bindParam(':email',$email);
+            $stmt->bindParam(':contact',$contact);
+            $stmt->bindParam(':user_type',$user_type);
+            $stmt->bindParam(':address',$address);
+            $stmt->bindParam(':check',$check);
 
-$result = $stmt->execute();
+            $result = $stmt->execute();
 
             header("Location: login.php");
             die;

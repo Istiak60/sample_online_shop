@@ -7,13 +7,6 @@ if(isset($_POST['btnSignIn']))  {
   echo $_POST['email'].'<br>';
   echo $_POST['password'].'<br>';
   
-
-
-// // var_dump($_SERVER['REQUEST_METHOD']);
-// if(isset($_POST['btnSignIn']))echo "btn clicked<br>";
-
-// if($_SERVER['REQUEST_METHOD']== "POST")
-// 
  var_dump($_GET);
   //somthing was posted
   $email = $_POST['email'];
@@ -23,7 +16,7 @@ if(isset($_POST['btnSignIn']))  {
         
        
         $query="select * from users where email = '$email' limit 1";
-        // $query = "SELECT * FROM `users` WHERE email LIKE :email AND password LIKE :password;";
+      
 
      $stmt = $con->prepare($query);
 		$stmt->bindParam(':email', $email);
@@ -38,10 +31,11 @@ if(isset($_POST['btnSignIn']))  {
       if($result && count($user_data) > 0){
       
         
-            $_SESSION['id']=$user_data['id'];
-            $_SESSION['email']=$user_data['email'];
-            $_SESSION['user_name']=$user_data['user_name'];
-          header("Location: dashboard.php");
+            $_SESSION['id'] = $user_data['id'];
+            $_SESSION['email'] = $user_data['email'];
+            $_SESSION['user_name'] = $user_data['user_name'];
+            $_SESSION['user_type'] = $user_data['user_type'];
+            header("Location: dashboard.php");
       
 
         
